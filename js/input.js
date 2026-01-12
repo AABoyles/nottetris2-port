@@ -1,3 +1,5 @@
+import { initMobileControls, cleanupMobileControls, isMobileDevice } from './mobileControls.js';
+
 const keys = {
     left: false,
     right: false,
@@ -9,20 +11,38 @@ const keys = {
     enter: false
 };
 
+// Keys that should only trigger once per press
+const ONE_TIME_PRESS_KEYS = ['hardDrop', 'pause', 'enter'];
+
 const keysPressedThisFrame = {
     hardDrop: false,
     pause: false,
     enter: false
 };
 
+// Callback for mobile controls to update input state
+function handleMobileInput(key, pressed) {
+    const wasPressed = keys[key];
+    keys[key] = pressed;
+    
+    // Track one-time press events for certain keys
+    if (pressed && !wasPressed && ONE_TIME_PRESS_KEYS.includes(key)) {
+        keysPressedThisFrame[key] = true;
+    }
+}
+
 export function initInput() {
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+    
+    // Initialize mobile controls if on mobile device
+    initMobileControls(handleMobileInput);
 }
 
 export function cleanupInput() {
     window.removeEventListener('keydown', handleKeyDown);
     window.removeEventListener('keyup', handleKeyUp);
+    cleanupMobileControls();
 }
 
 function handleKeyDown(e) {

@@ -1,0 +1,221 @@
+/* Mobile controls styling */
+.mobile-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* D-Pad Container */
+.dpad-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 140px;
+    height: 140px;
+    pointer-events: auto;
+}
+
+.dpad-button {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: rgba(50, 50, 50, 0.8);
+    border: 2px solid rgba(100, 100, 100, 0.8);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    user-select: none;
+    touch-action: none;
+    transition: all 0.1s ease;
+}
+
+.dpad-button:active,
+.dpad-button.active {
+    background: rgba(100, 150, 255, 0.9);
+    border-color: rgba(150, 200, 255, 0.9);
+    transform: scale(0.95);
+}
+
+.dpad-up {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dpad-down {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dpad-left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dpad-right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dpad-center {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(80, 80, 80, 0.8);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Button Pad Container - Nintendo Style */
+.button-pad-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 140px;
+    height: 140px;
+    pointer-events: auto;
+}
+
+.action-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    user-select: none;
+    touch-action: none;
+    border: 3px solid;
+    transition: all 0.1s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.action-button:active,
+.action-button.active {
+    transform: scale(0.9);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Nintendo Game Boy style button colors */
+.btn-a {
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #dc143c 0%, #a00020 100%);
+    border-color: #ff3355;
+}
+
+.btn-a:active,
+.btn-a.active {
+    background: linear-gradient(135deg, #a00020 0%, #800015 100%);
+}
+
+.btn-b {
+    bottom: 45px;
+    right: 70px;
+    background: linear-gradient(135deg, #ffd700 0%, #cc9900 100%);
+    border-color: #ffed4e;
+    color: #333;
+}
+
+.btn-b:active,
+.btn-b.active {
+    background: linear-gradient(135deg, #cc9900 0%, #996600 100%);
+}
+
+.btn-x {
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #4169e1 0%, #2850c0 100%);
+    border-color: #6495ed;
+}
+
+.btn-x:active,
+.btn-x.active {
+    background: linear-gradient(135deg, #2850c0 0%, #1a3d90 100%);
+}
+
+.btn-y {
+    top: 45px;
+    right: 70px;
+    background: linear-gradient(135deg, #32cd32 0%, #228b22 100%);
+    border-color: #90ee90;
+}
+
+.btn-y:active,
+.btn-y.active {
+    background: linear-gradient(135deg, #228b22 0%, #146614 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .dpad-container,
+    .button-pad-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .dpad-button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .dpad-center {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .action-button {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .dpad-container,
+    .button-pad-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .dpad-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .dpad-center {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .action-button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .btn-b,
+    .btn-y {
+        right: 55px;
+    }
+}
