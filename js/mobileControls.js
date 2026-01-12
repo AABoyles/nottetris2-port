@@ -12,7 +12,6 @@ const touchState = {
     left: false,
     right: false,
     down: false,
-    up: false,
     rotateLeft: false,
     rotateRight: false,
     hardDrop: false,
@@ -97,7 +96,7 @@ function createDPad() {
     
     // Create D-pad buttons
     const directions = [
-        { name: 'up', class: 'dpad-up', label: '▲', key: 'up' },
+        { name: 'up', class: 'dpad-up', label: '▲', key: 'rotateLeft' },  // Up also rotates left
         { name: 'down', class: 'dpad-down', label: '▼', key: 'down' },
         { name: 'left', class: 'dpad-left', label: '◀', key: 'left' },
         { name: 'right', class: 'dpad-right', label: '▶', key: 'right' }

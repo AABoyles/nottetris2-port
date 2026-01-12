@@ -4,7 +4,6 @@ const keys = {
     left: false,
     right: false,
     down: false,
-    up: false,
     rotateLeft: false,
     rotateRight: false,
     hardDrop: false,
