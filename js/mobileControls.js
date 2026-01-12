@@ -5,6 +5,7 @@ let isMobile = false;
 let controlsContainer = null;
 let dpad = null;
 let buttons = null;
+let forceMobile = false;
 
 // Touch state
 const touchState = {
@@ -25,7 +26,16 @@ export function isMobileDevice() {
     return isMobile;
 }
 
+export function setForceMobile(force) {
+    forceMobile = force;
+}
+
 export function detectMobile() {
+    if (forceMobile) {
+        isMobile = true;
+        return true;
+    }
+    
     // Check for touch support and mobile characteristics
     const hasTouchScreen = ('ontouchstart' in window) || 
                           (navigator.maxTouchPoints > 0) || 
@@ -34,9 +44,10 @@ export function detectMobile() {
     const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     // Also check screen size - consider devices under 768px as mobile
-    const isSmallScreen = window.innerWidth < 768;
+    const isSmallScreen = window.innerWidth <= 768;
     
-    isMobile = hasTouchScreen && (isMobileUA || isSmallScreen);
+    // Show controls if touch screen OR (mobile UA and small screen)
+    isMobile = hasTouchScreen || (isMobileUA && isSmallScreen);
     return isMobile;
 }
 
@@ -103,6 +114,11 @@ function createDPad() {
         button.addEventListener('touchend', handleDPadTouchEnd, { passive: false });
         button.addEventListener('touchcancel', handleDPadTouchEnd, { passive: false });
         
+        // Add mouse event listeners as fallback for testing
+        button.addEventListener('mousedown', handleDPadTouchStart, { passive: false });
+        button.addEventListener('mouseup', handleDPadTouchEnd, { passive: false });
+        button.addEventListener('mouseleave', handleDPadTouchEnd, { passive: false });
+        
         container.appendChild(button);
     });
     
@@ -136,6 +152,11 @@ function createButtonPad() {
         button.addEventListener('touchstart', handleButtonTouchStart, { passive: false });
         button.addEventListener('touchend', handleButtonTouchEnd, { passive: false });
         button.addEventListener('touchcancel', handleButtonTouchEnd, { passive: false });
+        
+        // Add mouse event listeners as fallback for testing
+        button.addEventListener('mousedown', handleButtonTouchStart, { passive: false });
+        button.addEventListener('mouseup', handleButtonTouchEnd, { passive: false });
+        button.addEventListener('mouseleave', handleButtonTouchEnd, { passive: false });
         
         container.appendChild(button);
     });
