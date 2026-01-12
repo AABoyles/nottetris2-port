@@ -95,8 +95,10 @@ function createDPad() {
     container.className = 'dpad-container';
     
     // Create D-pad buttons
+    // Note: Up button maps to rotateLeft to match keyboard behavior (ArrowUp and KeyZ both rotate left)
+    // This provides an additional way to rotate that's natural for mobile users
     const directions = [
-        { name: 'up', class: 'dpad-up', label: '▲', key: 'rotateLeft' },  // Up also rotates left
+        { name: 'up', class: 'dpad-up', label: '▲', key: 'rotateLeft' },
         { name: 'down', class: 'dpad-down', label: '▼', key: 'down' },
         { name: 'left', class: 'dpad-left', label: '◀', key: 'left' },
         { name: 'right', class: 'dpad-right', label: '▶', key: 'right' }

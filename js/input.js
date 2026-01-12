@@ -11,6 +11,9 @@ const keys = {
     enter: false
 };
 
+// Keys that should only trigger once per press
+const ONE_TIME_PRESS_KEYS = ['hardDrop', 'pause', 'enter'];
+
 const keysPressedThisFrame = {
     hardDrop: false,
     pause: false,
@@ -23,10 +26,8 @@ function handleMobileInput(key, pressed) {
     keys[key] = pressed;
     
     // Track one-time press events for certain keys
-    if (pressed && !wasPressed) {
-        if (key === 'hardDrop' || key === 'pause' || key === 'enter') {
-            keysPressedThisFrame[key] = true;
-        }
+    if (pressed && !wasPressed && ONE_TIME_PRESS_KEYS.includes(key)) {
+        keysPressedThisFrame[key] = true;
     }
 }
 

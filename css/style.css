@@ -5,7 +5,7 @@
 }
 
 :root {
-    --mobile-controls-height: 210px; /* Height reserved for mobile controls at bottom */
+    --mobile-controls-height: 200px; /* Height reserved for mobile controls at bottom (matches .mobile-controls height) */
 }
 
 html, body {

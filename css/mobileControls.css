@@ -219,10 +219,3 @@
         right: 55px;
     }
 }
-
-/* Hide controls on desktop */
-@media (min-width: 768px) and (pointer: fine) {
-    .mobile-controls {
-        display: none;
-    }
-}
